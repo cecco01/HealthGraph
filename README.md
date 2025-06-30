@@ -85,31 +85,7 @@ Il grafo di conoscenza può essere visualizzato in modo interattivo:
 - **Grafo completo**: Visualizza l'intero grafo di conoscenza.
 - **Grafo semplificato**: Visualizza un grafo semplificato focalizzato su un ospedale specifico.
 
-## Tecnologie Utilizzate
-
-- **Python**: Linguaggio di programmazione principale.
-- **NetworkX**: Libreria per la creazione e l'analisi di grafi.
-- **Pandas**: Libreria per l'analisi dei dati.
-- **Streamlit**: Framework per la creazione di applicazioni web interattive.
-- **Plotly**: Libreria per la creazione di visualizzazioni interattive.
-
-## Contribuire
-
-Se desideri contribuire al progetto, puoi:
-
-1. Segnalare bug o problemi.
-2. Proporre nuove funzionalità.
-3. Inviare pull request con miglioramenti.
-
-## Licenza
-
-Questo progetto è rilasciato sotto licenza MIT. Vedi il file `LICENSE` per maggiori dettagli.
 
 ## Autori
 
-- [Il tuo nome]
-
-## Ringraziamenti
-
-- Medicare.gov per i dati sugli ospedali.
-- La comunità open source per le librerie utilizzate. 
+- Leonardo Ceccarelli
