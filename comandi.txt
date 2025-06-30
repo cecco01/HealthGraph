@@ -1,0 +1,3 @@
+cd OneDrive/Desktop/Business/KnowledgeGraph
+
+streamlit run ui.py

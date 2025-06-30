@@ -1,1 +1,115 @@
-# HealthGraph
+# Healthcare Knowledge Graph
+
+## Panoramica del Progetto
+
+Questo progetto è stato sviluppato per il corso di Business & Management e utilizza un grafo di conoscenza per analizzare e visualizzare dati sanitari. Il grafo combina informazioni sugli ospedali, servizi, medici e recensioni dei pazienti, permettendo di effettuare analisi avanzate e visualizzazioni interattive.
+
+Il progetto utilizza dati reali provenienti da Medicare.gov, combinati con un dataset di recensioni fittizio generato in base alle caratteristiche degli ospedali.
+
+## Caratteristiche Principali
+
+- **Analisi degli Ospedali**: Visualizza informazioni dettagliate sugli ospedali, inclusi rating, servizi offerti e medici.
+- **Analisi dei Servizi**: Esplora i servizi offerti dagli ospedali e le relative recensioni.
+- **Analisi delle Recensioni**: Analizza le recensioni dei pazienti, estrae parole chiave e trova recensioni simili.
+- **Visualizzazione del Grafo**: Visualizza il grafo di conoscenza in modo interattivo, con la possibilità di esplorare le relazioni tra entità.
+- **Confronto tra Ospedali**: Confronta gli ospedali in base a diverse metriche.
+
+## Struttura del Progetto
+
+Il progetto è organizzato nei seguenti file:
+
+- `data_preparation.py`: Gestisce il download e la preparazione dei dati.
+- `kg_builder.py`: Costruisce e gestisce il grafo di conoscenza.
+- `ui.py`: Interfaccia utente basata su Streamlit.
+- `requirements.txt`: Dipendenze del progetto.
+
+## Installazione
+
+1. Clona il repository:
+   ```
+   git clone https://github.com/tuousername/healthcare-knowledge-graph.git
+   cd healthcare-knowledge-graph
+   ```
+
+2. Installa le dipendenze:
+   ```
+   pip install -r requirements.txt
+   ```
+
+## Utilizzo
+
+1. Avvia l'applicazione:
+   ```
+   streamlit run ui.py
+   ```
+
+2. L'applicazione si aprirà nel tuo browser predefinito. Puoi navigare tra le diverse sezioni utilizzando il menu nella barra laterale.
+
+## Struttura del Grafo di Conoscenza
+
+Il grafo di conoscenza è strutturato come segue:
+
+- **Nodi**:
+  - Ospedali: rappresentano gli ospedali con le loro caratteristiche.
+  - Servizi: rappresentano i servizi offerti dagli ospedali.
+  - Medici: rappresentano i medici che lavorano negli ospedali.
+  - Recensioni: rappresentano le recensioni dei pazienti.
+
+- **Archi**:
+  - Ospedale-Servizio: rappresenta la relazione "l'ospedale offre il servizio".
+  - Servizio-Recensione: rappresenta la relazione "il servizio è descritto dalla recensione".
+  - Medico-Ospedale: rappresenta la relazione "il medico lavora nell'ospedale".
+  - Medico-Servizio: rappresenta la relazione "il medico è specializzato nel servizio".
+
+## Funzionalità Avanzate
+
+### Analisi delle Recensioni
+
+L'applicazione utilizza tecniche di elaborazione del linguaggio naturale per analizzare le recensioni:
+
+- **Estrazione di parole chiave**: Identifica le parole più importanti nelle recensioni.
+- **Recensioni simili**: Trova recensioni simili in base al contenuto.
+
+### Confronto tra Ospedali
+
+L'applicazione permette di confrontare gli ospedali in base a diverse metriche:
+
+- Rating complessivo
+- Metriche di qualità
+- Servizi offerti
+
+### Visualizzazione Interattiva
+
+Il grafo di conoscenza può essere visualizzato in modo interattivo:
+
+- **Grafo completo**: Visualizza l'intero grafo di conoscenza.
+- **Grafo semplificato**: Visualizza un grafo semplificato focalizzato su un ospedale specifico.
+
+## Tecnologie Utilizzate
+
+- **Python**: Linguaggio di programmazione principale.
+- **NetworkX**: Libreria per la creazione e l'analisi di grafi.
+- **Pandas**: Libreria per l'analisi dei dati.
+- **Streamlit**: Framework per la creazione di applicazioni web interattive.
+- **Plotly**: Libreria per la creazione di visualizzazioni interattive.
+
+## Contribuire
+
+Se desideri contribuire al progetto, puoi:
+
+1. Segnalare bug o problemi.
+2. Proporre nuove funzionalità.
+3. Inviare pull request con miglioramenti.
+
+## Licenza
+
+Questo progetto è rilasciato sotto licenza MIT. Vedi il file `LICENSE` per maggiori dettagli.
+
+## Autori
+
+- [Il tuo nome]
+
+## Ringraziamenti
+
+- Medicare.gov per i dati sugli ospedali.
+- La comunità open source per le librerie utilizzate. 
