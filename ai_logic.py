@@ -54,33 +54,6 @@ def extract_entities(text: str) -> Dict[str, List[str]]:
     
     return entities
 
-def analyze_sentiment(text: str) -> Dict[str, float]:
-    """
-    Analizza il sentiment del testo usando regole e dizionari.
-    
-    Parameters:
-    text (str): Testo da analizzare
-    
-    Returns:
-    Dict[str, float]: Dizionario con punteggi di sentiment
-    """
-    # Dizionari di parole positive e negative in italiano
-    positive_words = set(['eccellente', 'ottimo', 'buono', 'gentile', 'professionale', 
-                         'pulito', 'efficiente', 'competente', 'cortese', 'attento'])
-    negative_words = set(['pessimo', 'terribile', 'scadente', 'disorganizzato', 
-                         'trascurato', 'lento', 'incompetente', 'maleducato'])
-    
-    words = text.lower().split()
-    pos_count = sum(1 for word in words if word in positive_words)
-    neg_count = sum(1 for word in words if word in negative_words)
-    total = len(words)
-    
-    return {
-        "positive": pos_count / total if total > 0 else 0,
-        "negative": neg_count / total if total > 0 else 0,
-        "neutral": (total - pos_count - neg_count) / total if total > 0 else 0
-    }
-
 def extract_keywords(text: str, top_k: int = 5) -> List[str]:
     """
     Estrae le parole chiave dal testo usando TF-IDF.
@@ -137,88 +110,6 @@ def build_knowledge_graph(reviews: List[str]) -> nx.Graph:
     nx.Graph: Grafo della conoscenza
     """
     G = nx.Graph()
-    
-    for review in reviews:
-        # Estrai entità
-        entities = extract_entities(review)
-        
-        # Aggiungi nodi per ogni entità
-        for category, items in entities.items():
-            for item in items:
-                G.add_node(item, type=category)
-        
-        # Aggiungi nodo per la recensione
-        review_id = f"review_{hash(review)}"
-        G.add_node(review_id, type="REVIEW")
-        
-        # Aggiungi archi tra recensione e entità
-        for category, items in entities.items():
-            for item in items:
-                G.add_edge(review_id, item, relation=f"MENTIONS_{category}")
-        
-        # Analizza sentiment
-        sentiment = analyze_sentiment(review)
-        G.nodes[review_id]["sentiment"] = sentiment
-        
-        # Estrai keywords
-        keywords = extract_keywords(review)
-        G.nodes[review_id]["keywords"] = keywords
-        
-        # Aggiungi archi tra keywords e recensione
-        for keyword in keywords:
-            G.add_edge(review_id, keyword, relation="CONTAINS_KEYWORD")
-    
-    return G
-
-def analyze_hospital_review(review_text: str) -> Dict:
-    """
-    Analizza una recensione ospedaliera combinando diversi metodi.
-    
-    Parameters:
-    review_text (str): Il testo della recensione dell'ospedale
-    
-    Returns:
-    Dict: Dizionario contenente l'analisi completa
-    """
-    # Preprocessa il testo
-    processed_text = preprocess_text(review_text)
-    
-    # Estrai entità
-    entities = extract_entities(processed_text)
-    
-    # Analizza sentiment
-    sentiment = analyze_sentiment(processed_text)
-    
-    # Estrai keywords
-    keywords = extract_keywords(processed_text)
-    
-    return {
-        "entities": entities,
-        "sentiment": sentiment,
-        "keywords": keywords,
-        "processed_text": processed_text
-    }
-
-# Test della funzionalità
-if __name__ == "__main__":
-    test_review = """
-    Ho avuto un'esperienza eccellente all'Ospedale San Giovanni. 
-    Il Dottor Rossi è stato molto gentile e professionale.
-    La pulizia delle camere era impeccabile. 
-    L'unico punto negativo è stato il tempo di attesa in pronto soccorso.
-    """
-    
-    # Test dell'analisi completa
-    result = analyze_hospital_review(test_review)
-    print("\n📊 Analisi Recensione Ospedale:")
-    print(json.dumps(result, indent=2, ensure_ascii=False))
-    
-    # Test del knowledge graph
-    reviews = [test_review]
-    G = build_knowledge_graph(reviews)
-    print("\n🔍 Knowledge Graph:")
-    print(f"Numero di nodi: {G.number_of_nodes()}")
-    print(f"Numero di archi: {G.number_of_edges()}")
-    print("\nNodi nel grafo:")
-    for node in G.nodes(data=True):
-        print(f"- {node[0]}: {node[1]}") 
+    # Aggiungi nodi e archi secondo la logica del knowledge graph sanitario
+    # ...
+    return G 

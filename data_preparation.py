@@ -25,14 +25,14 @@ def prepare_data():
         # Leggi il dataset degli ospedali con diverse codifiche
         print("Lettura del dataset ospedali...")
         try:
-            # Prova prima con latin-1
+            
             ospedali_df = pd.read_csv("data/Hospital General Information.csv", encoding='latin-1')
         except:
             try:
-                # Se non funziona, prova con cp1252
+                
                 ospedali_df = pd.read_csv("data/Hospital General Information.csv", encoding='cp1252')
             except:
-                # Se ancora non funziona, prova con iso-8859-1
+                
                 ospedali_df = pd.read_csv("data/Hospital General Information.csv", encoding='iso-8859-1')
         
         # Pulisci i dati degli ospedali
