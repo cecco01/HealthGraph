@@ -109,7 +109,7 @@ if 'max_edges_per_node' not in st.session_state:
 # Selezione della pagina
 page = st.sidebar.selectbox(
     "Seleziona una pagina",
-    ["Panoramica e Analisi", "Visualizzazione Grafo"]
+    ["Panoramica e Analisi", "Visualizzazione Grafo", "Analisi NLP Recensioni"]
 )
 
 # Filtri nella sidebar
@@ -282,11 +282,7 @@ if page == "Panoramica e Analisi":
     else:
         st.info("Sono necessari almeno due ospedali per il confronto.")
 
-# =============================================================================
-# Pagina Visualizzazione Grafo
-# =============================================================================
-
-else:  # Visualizzazione Grafo
+elif page == "Visualizzazione Grafo":
     st.header("Visualizzazione Grafo")
     
     # Crea un sottografo con solo gli ospedali filtrati
@@ -709,3 +705,8 @@ else:  # Visualizzazione Grafo
         if st.sidebar.button("Esporta Grafo (JSON)"):
             kg.export_graph("graph_export.json")
             st.sidebar.success("Grafo esportato con successo!")
+
+elif page == "Analisi NLP Recensioni":
+    from nlp_reviews import display_nlp_analysis_page, display_hospital_theme_graph_gemini
+    display_nlp_analysis_page()
+    display_hospital_theme_graph_gemini()
