@@ -372,12 +372,13 @@ class GeminiNLPReviewAnalyzer:
         
         return fig
     
-    def build_hospital_theme_graph_gemini(self, reviews_df: pd.DataFrame, max_reviews: int = 20) -> nx.Graph:
+    def build_hospital_theme_graph_gemini(self, reviews_df: pd.DataFrame, selected_hospital: str, max_reviews: int = 20) -> nx.Graph:
         """
-        Costruisce un sottografo che collega l'ospedale ai temi estratti dalle sue recensioni
+        Costruisce un sottografo che collega un ospedale ai temi estratti dalle sue recensioni
         
         Args:
             reviews_df: DataFrame con le recensioni
+            selected_hospital: Nome dell'ospedale selezionato
             max_reviews: Numero massimo di recensioni da analizzare
             
         Returns:
@@ -386,7 +387,7 @@ class GeminiNLPReviewAnalyzer:
         if not self.model:
             return nx.Graph()
         
-        # Usa tutte le recensioni disponibili
+        # Usa tutte le recensioni disponibili (simuliamo che siano per l'ospedale selezionato)
         hosp_reviews = reviews_df.copy()
         
         if len(hosp_reviews) > max_reviews:
@@ -444,7 +445,7 @@ class GeminiNLPReviewAnalyzer:
         
         # Costruisci il grafo
         G = nx.Graph()
-        G.add_node('Ospedale', type='Hospital')
+        G.add_node(selected_hospital, type='Hospital')
         
         # Aggiungi temi principali
         for theme, sentiments in theme_sentiments.items():
@@ -456,7 +457,7 @@ class GeminiNLPReviewAnalyzer:
                 sentiment_vals = [sentiment_map.get(s, 0) for s in sentiments]
                 avg_sentiment = sum(sentiment_vals) / len(sentiment_vals) if sentiment_vals else 0
                 
-                G.add_edge('Ospedale', theme, avg_sentiment=avg_sentiment, count=theme_counts[theme])
+                G.add_edge(selected_hospital, theme, avg_sentiment=avg_sentiment, count=theme_counts[theme])
         
         # Aggiungi nodi tematici generali se il grafo è troppo piccolo
         if len(G.nodes()) < 5:
@@ -464,11 +465,11 @@ class GeminiNLPReviewAnalyzer:
             for theme in general_themes:
                 if theme not in G.nodes():
                     G.add_node(theme, type='GeneralTheme')
-                    G.add_edge('Ospedale', theme, avg_sentiment=0, count=1)
+                    G.add_edge(selected_hospital, theme, avg_sentiment=0, count=1)
         
         return G
     
-    def plot_hospital_theme_graph(self, G: nx.Graph):
+    def plot_hospital_theme_graph(self, G: nx.Graph, selected_hospital: str):
         """
         Visualizza il sottografo Ospedale ↔ Temi con Plotly.
         Colore arco: verde (positivo), rosso (negativo), grigio (neutro).
@@ -538,7 +539,7 @@ class GeminiNLPReviewAnalyzer:
         ))
         
         fig.update_layout(
-            title='Sottografo Temi Recensioni',
+            title=f'Sottografo Temi Recensioni per {selected_hospital}',
             showlegend=False,
             margin=dict(b=20,l=5,r=5,t=40),
             xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
@@ -671,6 +672,16 @@ def display_hospital_theme_graph_gemini():
         st.warning("Non ci sono dati di recensioni disponibili.")
         return
     
+    # Lista degli ospedali disponibili
+    hospital_names = [
+        "ST ROSE HOSPITAL",
+        "ST MARYS MEDICAL CENTER", 
+        "YUMA DISTRICT HOSPITAL",
+        "GOOD SAMARITAN REGIONAL HLTH CENTER"
+    ]
+    
+    selected_hospital = st.selectbox("Seleziona un ospedale per vedere i temi delle recensioni:", hospital_names, key="nlp_hosp_theme")
+    
     # Slider per controllare il numero di recensioni da analizzare
     max_reviews = st.slider(
         "Numero massimo di recensioni da analizzare:",
@@ -680,10 +691,10 @@ def display_hospital_theme_graph_gemini():
         help="Limita il numero per ottimizzare le prestazioni"
     )
     
-    if st.button("Crea sottografo temi"):
+    if st.button("Crea sottografo temi per questo ospedale"):
         with st.spinner(f"Analizzando {max_reviews} recensioni..."):
-            G = analyzer.build_hospital_theme_graph_gemini(reviews_df, max_reviews)
-            fig = analyzer.plot_hospital_theme_graph(G)
+            G = analyzer.build_hospital_theme_graph_gemini(reviews_df, selected_hospital, max_reviews)
+            fig = analyzer.plot_hospital_theme_graph(G, selected_hospital)
             st.plotly_chart(fig, use_container_width=True)
             st.info("Colore arco: verde=positivo, rosso=negativo, grigio=neutro. Spessore=importanza del tema.")
  
