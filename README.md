@@ -23,31 +23,9 @@ Il progetto è organizzato nei seguenti file:
 - `ui.py`: Interfaccia utente basata su Streamlit.
 - `requirements.txt`: Dipendenze del progetto.
 
-## Installazione
+## Struttura del Knowledge Graph
 
-1. Clona il repository:
-   ```
-   git clone https://github.com/tuousername/healthcare-knowledge-graph.git
-   cd healthcare-knowledge-graph
-   ```
-
-2. Installa le dipendenze:
-   ```
-   pip install -r requirements.txt
-   ```
-
-## Utilizzo
-
-1. Avvia l'applicazione:
-   ```
-   streamlit run ui.py
-   ```
-
-2. L'applicazione si aprirà nel tuo browser predefinito. Puoi navigare tra le diverse sezioni utilizzando il menu nella barra laterale.
-
-## Struttura del Grafo di Conoscenza
-
-Il grafo di conoscenza è strutturato come segue:
+Il Knowledge Graph è strutturato come segue:
 
 - **Nodi**:
   - Ospedali: rappresentano gli ospedali con le loro caratteristiche.
@@ -91,4 +69,5 @@ Il grafo di conoscenza può essere visualizzato in modo interattivo:
 - Leonardo Ceccarelli
 - Nicolò Bacherotti
 - Chiara Masiero
+
 
