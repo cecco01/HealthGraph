@@ -89,3 +89,6 @@ Il grafo di conoscenza può essere visualizzato in modo interattivo:
 ## Autori
 
 - Leonardo Ceccarelli
+- Nicolò Bacherotti
+- Chiara Masiero
+
