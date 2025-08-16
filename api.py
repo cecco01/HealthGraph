@@ -1,5 +1,4 @@
-from flask import Flask, jsonify, request
-import networkx as nx
+from flask import Flask, jsonify
 from kg_builder import KnowledgeGraph
 
 app = Flask(__name__)

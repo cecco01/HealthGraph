@@ -11,18 +11,16 @@ networkx==3.2.1    # Libreria per la creazione e manipolazione di grafi
 
 # Visualizzazione
 plotly==5.18.0     # Libreria per la creazione di visualizzazioni interattive
-scikit-learn==1.4.0  # Libreria per algoritmi di machine learning (usata per il clustering)
 
-# Gestione dati
-python-louvain==0.16  # Libreria per il rilevamento di comunità nei grafi
+# Web framework e HTTP
+flask==2.3.3       # Framework web per API
+requests==2.31.0   # Libreria per richieste HTTP
 
-flask==2.3.3
-matplotlib==3.7.2
-openai==1.12.0
-google-generativeai==0.3.1
-python-dotenv==1.0.1
-streamlit-plotly-events==0.0.6
-requests==2.31.0
-spacy==3.7.2
+# Analisi NLP con AI
+openai==1.12.0     # Libreria per l'accesso alle API di OpenAI (GPT-4)
+google-generativeai==0.3.2  # Libreria per l'accesso alle API di Google Gemini
+
+# Gestione configurazione
+python-dotenv==1.0.0  # Libreria per gestire le variabili d'ambiente
 
 

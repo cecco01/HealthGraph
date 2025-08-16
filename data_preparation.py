@@ -13,7 +13,6 @@ Funzionalità principali:
 """
 
 import pandas as pd
-import os
 
 def prepare_data():
     """

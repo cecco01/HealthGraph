@@ -1,17 +1,14 @@
 import openai
-import json
 import requests
-from typing import Dict, List, Tuple, Set
-import spacy
+from typing import Dict, List, Tuple
 import networkx as nx
-from collections import Counter
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
 # Carica il modello italiano di spaCy
-nlp = spacy.load("it_core_news_lg")
+# nlp = spacy.load("it_core_news_lg") # This line is removed as per the edit hint
 
 def preprocess_text(text: str) -> str:
     """
@@ -28,31 +25,6 @@ def preprocess_text(text: str) -> str:
     # Rimuovi spazi multipli
     text = re.sub(r'\s+', ' ', text).strip()
     return text
-
-def extract_entities(text: str) -> Dict[str, List[str]]:
-    """
-    Estrae entità dal testo usando spaCy.
-    
-    Parameters:
-    text (str): Testo da analizzare
-    
-    Returns:
-    Dict[str, List[str]]: Dizionario con entità estratte per categoria
-    """
-    doc = nlp(text)
-    entities = {
-        "PERSON": [],
-        "ORG": [],
-        "GPE": [],  # Geopolitical entities (luoghi)
-        "PRODUCT": [],
-        "FAC": []   # Facilities (strutture)
-    }
-    
-    for ent in doc.ents:
-        if ent.label_ in entities:
-            entities[ent.label_].append(ent.text)
-    
-    return entities
 
 def extract_keywords(text: str, top_k: int = 5) -> List[str]:
     """

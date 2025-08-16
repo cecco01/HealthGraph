@@ -109,7 +109,7 @@ if 'max_edges_per_node' not in st.session_state:
 # Selezione della pagina
 page = st.sidebar.selectbox(
     "Seleziona una pagina",
-    ["Panoramica e Analisi", "Visualizzazione Grafo", "Analisi NLP Recensioni"]
+    ["Panoramica e Analisi", "Visualizzazione Grafo", "Analisi Temi Recensioni"]
 )
 
 # Filtri nella sidebar
@@ -706,7 +706,6 @@ elif page == "Visualizzazione Grafo":
             kg.export_graph("graph_export.json")
             st.sidebar.success("Grafo esportato con successo!")
 
-elif page == "Analisi NLP Recensioni":
-    from nlp_reviews import display_nlp_analysis_page, display_hospital_theme_graph_gemini
-    display_nlp_analysis_page()
+elif page == "Analisi Temi Recensioni":
+    from nlp_reviews import display_hospital_theme_graph_gemini
     display_hospital_theme_graph_gemini()
