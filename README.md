@@ -63,11 +63,31 @@ Il grafo di conoscenza può essere visualizzato in modo interattivo:
 - **Grafo completo**: Visualizza l'intero grafo di conoscenza.
 - **Grafo semplificato**: Visualizza un grafo semplificato focalizzato su un ospedale specifico.
 
+## Come provare il progetto in locale (Windows)
+
+(Richiede Python, versione consigliata: Python 3.11 )
+
+3) (Consigliato) Crea un ambiente virtuale
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate
+```
+(Se salti questo passo, i pacchetti verranno installati sul tuo Python globale)
+
+4) Installa le dipendenze
+```powershell
+pip install -r requirements.txt
+```
+
+5) Avvia l'app
+```powershell
+streamlit run ui.py
 
 ## Autori
 
 - Leonardo Ceccarelli
 - Nicolò Bacherotti
 - Chiara Masiero
+
 
 
