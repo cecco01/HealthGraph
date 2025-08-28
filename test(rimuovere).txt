@@ -1,5 +1,0 @@
-cd OneDrive/Desktop/Business/KnowledgeGraph
-
-venv311\Scripts\activate.bat
-
-streamlit run ui.py
