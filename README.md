@@ -68,9 +68,15 @@ Il grafo di conoscenza può essere visualizzato in modo interattivo:
 (Richiede Python, versione consigliata: Python 3.11 )
 
 1) (Consigliato) Crea un ambiente virtuale
+- Windows (PowerShell):
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate
+```
+- macOS (Terminal):
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 (Se salti questo passo, i pacchetti verranno installati sul tuo Python globale)
 
@@ -82,6 +88,7 @@ pip install -r requirements.txt
 3) Avvia l'app
 ```powershell
 streamlit run ui.py
+
 
 
 
